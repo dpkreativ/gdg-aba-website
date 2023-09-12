@@ -3,11 +3,12 @@ import { cn } from '@/lib/utils';
 export default function Section({
   boxedWidth = false,
   children,
+  sectionRef,
   sectionId,
   title,
 }) {
   return (
-    <section className="py-5" id={sectionId}>
+    <section ref={sectionRef} className="py-5" id={sectionId}>
       <div
         className={cn('w-full', {
           'max-w-5xl mx-auto px-5': boxedWidth,

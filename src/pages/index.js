@@ -4,16 +4,43 @@ import { OrganizerCard, TalentCard } from '@/components/Cards';
 import Layout from '@/components/Layout';
 import Section from '@/components/Section';
 import { organizers, talents } from '@/lib/data';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { slideUp } from '@/lib/animations';
 
 export default function Home() {
+  const hero = useRef(null);
+  const isInView = useInView(hero);
+
   return (
     <Layout title={`Home`}>
       {/* Hero/Banner */}
-      <Section boxedWidth>
+      <Section sectionRef={hero} boxedWidth>
         <div className="flex gap-2 justify-center text-3xl md:text-[64px] pb-10 md:pb-20">
-          <span className="text-custom-blue">Connect.</span>
-          <span className="text-custom-red">Learn.</span>
-          <span className="text-custom-green">Grow.</span>
+          <motion.span
+            variants={slideUp}
+            animate={isInView ? 'open' : 'closed'}
+            custom={0}
+            className="text-custom-blue"
+          >
+            Connect.
+          </motion.span>
+          <motion.span
+            variants={slideUp}
+            animate={isInView ? 'open' : 'closed'}
+            custom={1}
+            className="text-custom-red"
+          >
+            Learn.
+          </motion.span>
+          <motion.span
+            variants={slideUp}
+            animate={isInView ? 'open' : 'closed'}
+            custom={2}
+            className="text-custom-green"
+          >
+            Grow.
+          </motion.span>
         </div>
         <div>
           <Lottie animationData={heroAnimation} />
